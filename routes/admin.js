@@ -4,6 +4,8 @@ const path = require('path')
 
 const router = express.Router();
 
+const products = []; //To store the Entered Data by the user.
+
 // Middleware handle the req, res & next
 
 // "/admin/add-product" =>GET
@@ -19,10 +21,15 @@ router.get('/add-product', (req, res, next) => {
 
 // "/admin/add-product" =>POST
 
-router.post('/product', (req, res, next) => {
-    console.log(req.body);
+router.post('/add-product', (req, res, next) => {
+    console.log(req.body)
+    products.push({ title: req.body.product })
+    // res.json({ success: true, message: 'Product added successfully', products }); // send back the response
     res.redirect('/');
 });
 
 
-module.exports = router;
+// module.exports = router;
+
+exports.routes = router;
+exports.products = products;

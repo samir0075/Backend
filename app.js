@@ -7,7 +7,7 @@ const app = express();
 
 //importing the files from their places 
 
-const adminRoutes = require("./routes/admin")
+const adminData = require("./routes/admin")
 
 const shopRoutes = require("./routes/shop")
 
@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: "false" }))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-//Added default "/admin" url before all adminRoutes url's
+//Added default "/admin" url before all adminData url's
 
-app.use("/admin", adminRoutes);
+app.use("/admin", adminData.routes);
 
 app.use(shopRoutes);
 
