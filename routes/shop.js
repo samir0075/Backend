@@ -4,27 +4,8 @@ const path = require('path')
 
 const router = express.Router();
 
-const adminData = require("./admin")
+const productsController = require("../controllers/products")
 
-
-router.get('/', (req, res, next) => {
-
-    console.log(adminData.products, "SHOP")
-
-    const products = adminData?.products;
-
-    //Sending the file content of shop.html (_dirname is the exact path of this file move to views which is sibling need to follow the path how we do)
-    res.status(200).sendFile(path.join(__dirname, "../", 'views',
-        'shop.html'));
-
-    // res.render('shop', {
-    //     title: products,
-    //     pageTitle: "SHOP",
-    //     path: "/",
-    //     hasProducts: products.lenght > 0
-
-    // })
-});
-
+router.get('/', productsController.getProducts);
 
 module.exports = router;

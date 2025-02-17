@@ -7,9 +7,11 @@ const app = express();
 
 //importing the files from their places 
 
-const adminData = require("./routes/admin")
+const adminRoutes = require("./routes/admin")
 
 const shopRoutes = require("./routes/shop")
+
+const errorController = require("./controllers/error")
 
 //this bodyParser uses to get the data from the form 
 
@@ -21,15 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //Added default "/admin" url before all adminData url's
 
-app.use("/admin", adminData.routes);
+app.use("/admin", adminRoutes);
 
 app.use(shopRoutes);
 
 //Added 404 error 
 
-app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "views", "error.html"))
-})
+app.use(errorController.get404Error)
 
 //Server running on port 3000
 
